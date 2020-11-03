@@ -21,6 +21,18 @@ amp_slider_layout[1,1]=LText(scene,"Amplitude")
 amp_slider_layout[1,2]=amp_slider=LSlider(scene, range=0.2:0.2:10, startvalue=1.0)
 amp_slider_layout[1,3]=LText(scene,lift(string, amp_slider.value))
 
+#Slider for period
+period_slider_layout=layout[3,1]=GridLayout(1,3)
+period_slider_layout[1,1]=LText(scene,"Period")
+period_slider_layout[1,2]=period_slider=LSlider(scene, range=1.0:0.0001:60.0, startvalue=2.0*3.14159)
+period_slider_layout[1,3]=LText(scene,lift(string, period_slider.value))
+
+#Slider for shift
+shift_slider_layout=layout[4,1]=GridLayout(1,3)
+shift_slider_layout[1,1]=LText(scene,"Shift")
+shift_slider_layout[1,2]=shift_slider=LSlider(scene, range=-5.0:0.1:10.0, startvalue=0.0)
+shift_slider_layout[1,3]=LText(scene,lift(string, shift_slider.value))
+
 x1=0:0.1:30
 
 function makeWave(squiggle, x)
@@ -42,6 +54,6 @@ function go(amplitude=1.0, period=2.0*3.14159, shift=0.0, x=0:0.1:30)
 end
 
 
-P=plot!(axis1,x1,lift(go,amp_slider.value))
+P=plot!(axis1,x1,lift(go,amp_slider.value,period_slider.value,shift_slider.value))
 
 scene
